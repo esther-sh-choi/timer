@@ -4,13 +4,11 @@ const timer = (alarmTimes) => {
   if (!alarmTimes || !alarmTimes.length) {
     return;
   }
-  const filteredTimes = alarmTimes
-    .map((timeStr) => Number(timeStr))
-    .filter((time) => Number.isInteger(time) && time >= 0);
-  filteredTimes.sort();
+  const filteredTimes = alarmTimes.filter((time) => Number(time) >= 0);
 
   for (const time of filteredTimes) {
     setTimeout(() => {
+      console.log(time);
       process.stdout.write("\x07");
     }, time * 1000);
   }
