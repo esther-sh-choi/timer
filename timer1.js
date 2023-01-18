@@ -4,13 +4,13 @@ const timer = (alarmTimes) => {
   if (!alarmTimes || !alarmTimes.length) {
     return;
   }
-  const filteredTimes = alarmTimes.filter((time) => Number(time) >= 0);
 
-  for (const time of filteredTimes) {
-    setTimeout(() => {
-      console.log(time);
-      process.stdout.write("\x07");
-    }, time * 1000);
+  for (const time of alarmTimes) {
+    if (Number(time) !== NaN && Number(time) >= 0) {
+      setTimeout(() => {
+        process.stdout.write("\x07");
+      }, time * 1000);
+    }
   }
 };
 
